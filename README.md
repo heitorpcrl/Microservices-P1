@@ -31,7 +31,7 @@ A aplicação é dividida em três camadas principais:
 ## 🚀 Como Executar
 1. **Clonar o repositório**
    ```bash
-   git clone https://github.com/seu-usuario/nome-do-repositorio.git
+   git clone https://github.com/seu-usuario/Microservices-P1.git
    ```
 
 2. **Configurar o Backend**
