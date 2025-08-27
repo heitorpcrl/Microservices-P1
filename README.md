@@ -57,10 +57,8 @@ A aplicação é dividida em três camadas principais:
 - Persistência de informações em banco de dados.  
 
 ## 👥 Equipe
-- Nome do Integrante 1  
-- Nome do Integrante 2  
-- Nome do Integrante 3  
-- Nome do Integrante 4  
+- Heitor Santos Cortes
+- Paulo Henrique Amaral  
 
 ---
 📅 **Entrega:** 09/09  
