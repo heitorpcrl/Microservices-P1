@@ -1,0 +1,10 @@
+# Configurações do Banco de Dados
+DATABASE_URL=postgresql://usuario:senha@localhost:5432/nome_banco
+
+# Configurações da API
+API_HOST=0.0.0.0
+API_PORT=8000
+DEBUG=True
+
+# Configurações de Segurança
+SECRET_KEY=sua_chave_secreta_aqui
