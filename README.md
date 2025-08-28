@@ -185,3 +185,34 @@ Este projeto está sob a licença MIT. Veja o arquivo LICENSE para mais detalhes
 ## 🆘 Suporte
 
 Se você encontrar algum problema ou tiver dúvidas, abra uma issue no repositório.
+=======
+2. **Configurar o Backend**
+   - Instalar dependências:
+     ```bash
+     pip install -r requirements.txt
+     ```
+   - Rodar o microsserviço:
+     ```bash
+     uvicorn main:app --reload
+     ```
+
+3. **Configurar o Banco de Dados**
+   - Criar o banco no MySQL.
+   - Executar os scripts SQL disponíveis em `/db`.
+
+4. **Rodar o Frontend**
+   - Abrir o arquivo `index.html` no navegador.
+
+## 📊 Exemplos de Funcionalidades
+- Cadastro e autenticação de usuários.  
+- Consulta de dados por meio das APIs.  
+- Persistência de informações em banco de dados.  
+
+## 👥 Equipe
+- Heitor Santos Cortes
+- Paulo Henrique Amaral  
+
+---
+📅 **Entrega:** 09/09  
+
+
