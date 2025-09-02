@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Satellite Monitoring System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="scanline"></div>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-satellite"></i> SMS - Satellite Monitoring System</h1>
+                <div class="title-subtitle">Real-time Space Operations Control Center</div>
+                <div class="status-indicators">
+                    <div class="status-item">
+                        <span class="status-dot active"></span>
+                        <span>Status Service</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-dot active"></span>
+                        <span>Telemetry Service</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Satellite List Page -->
+            <section id="satellite-list" class="page active">
+                <div class="page-header">
+                    <h2><i class="fas fa-list"></i> Satellites Overview</h2>
+                    <p>Select a satellite to monitor its status and telemetry data</p>
+                </div>
+                
+                <div class="satellites-grid" id="satellites-grid">
+                    <!-- Satellites will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Satellite Monitoring Page -->
+            <section id="satellite-monitoring" class="page">
+                <div class="page-header">
+                    <button class="back-btn" onclick="showSatelliteList()">
+                        <i class="fas fa-arrow-left"></i> Back to Satellites
+                    </button>
+                    <h2 id="monitoring-title"><i class="fas fa-satellite"></i> Satellite Monitoring</h2>
+                </div>
+
+                <div class="monitoring-content">
+                    <!-- Status Section -->
+                    <div class="monitoring-section">
+                        <h3><i class="fas fa-info-circle"></i> Satellite Status</h3>
+                        <div class="status-card" id="status-card">
+                            <!-- Status data will be loaded here -->
+                        </div>
+                    </div>
+
+                    <!-- Telemetry Section -->
+                    <div class="monitoring-section">
+                        <h3><i class="fas fa-chart-line"></i> Real-Time Telemetry</h3>
+                        <div class="telemetry-grid">
+                            <!-- Temperature Chart -->
+                            <div class="telemetry-card">
+                                <h4><i class="fas fa-thermometer-half"></i> Temperature</h4>
+                                <div class="chart-container">
+                                    <canvas id="temperatureChart"></canvas>
+                                </div>
+                                <div class="current-value" id="current-temperature">--°C</div>
+                            </div>
+
+                            <!-- Battery Chart -->
+                            <div class="telemetry-card">
+                                <h4><i class="fas fa-battery-three-quarters"></i> Battery Level</h4>
+                                <div class="chart-container">
+                                    <canvas id="batteryChart"></canvas>
+                                </div>
+                                <div class="current-value" id="current-battery">--%</div>
+                            </div>
+
+                            <!-- Position Info -->
+                            <div class="telemetry-card">
+                                <h4><i class="fas fa-map-marker-alt"></i> Position</h4>
+                                <div class="position-info">
+                                    <div class="position-item">
+                                        <span class="label">Latitude:</span>
+                                        <span class="value" id="current-latitude">--</span>
+                                    </div>
+                                    <div class="position-item">
+                                        <span class="label">Longitude:</span>
+                                        <span class="value" id="current-longitude">--</span>
+                                    </div>
+                                    <div class="position-item">
+                                        <span class="label">Altitude:</span>
+                                        <span class="value" id="current-altitude">-- km</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Last Update -->
+                            <div class="telemetry-card">
+                                <h4><i class="fas fa-clock"></i> Last Update</h4>
+                                <div class="last-update" id="last-update">--</div>
+                                <div class="update-indicator">
+                                    <span class="pulse"></span>
+                                    <span>Live Data</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2024 Satellite Monitoring System - Real-time Space Operations</p>
+        </footer>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <p>Loading satellite data...</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
