@@ -20,8 +20,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Configuração do banco de dados TimescaleDB
-DATABASE_URL = "mysql+pymysql://root:3741@localhost:3306/satellite_telemetry"
+# Configuração do banco de dados SQLite (para teste)
+DATABASE_URL = "sqlite:///./satellite_telemetry.db"
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
@@ -132,6 +132,38 @@ def read_root():
 @app.get("/health")
 def health_check():
     return {"status": "healthy", "service": "satellite_telemetry"}
+
+@app.get("/telemetry", response_model=List[TelemetryResponse])
+def get_all_telemetry(limit: int = Query(10, ge=1, le=100), db: Session = Depends(get_db)):
+    """Retorna dados de telemetria de todos os satélites"""
+    try:
+        # Inicializar dados se necessário
+        if db.query(Telemetry).count() == 0:
+            initialize_telemetry_data(db)
+        
+        # Gerar novos dados para todos os satélites
+        satellite_names = {
+            1: "Hubble Space Telescope",
+            2: "ISS (International Space Station)",
+            3: "NOAA-19"
+        }
+        
+        for sat_id, sat_name in satellite_names.items():
+            new_telemetry_data = generate_telemetry_data(sat_id, sat_name)
+            new_telemetry = Telemetry(**new_telemetry_data)
+            db.add(new_telemetry)
+        
+        db.commit()
+        
+        # Retornar dados recentes de todos os satélites
+        telemetry_data = db.query(Telemetry).order_by(
+            Telemetry.timestamp.desc()
+        ).limit(limit).all()
+        
+        return telemetry_data
+        
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Erro ao buscar telemetria: {str(e)}")
 
 @app.get("/telemetria/{satellite_id}", response_model=List[TelemetryResponse])
 def get_telemetry(satellite_id: int, limit: int = Query(10, ge=1, le=100), db: Session = Depends(get_db)):

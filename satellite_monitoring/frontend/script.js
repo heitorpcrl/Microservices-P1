@@ -2,7 +2,7 @@
 const API_CONFIG = {
     STATUS_SERVICE: 'http://localhost:8001',
     TELEMETRY_SERVICE: 'http://localhost:8002',
-    UPDATE_INTERVAL: 5000 // 5 segundos
+    UPDATE_INTERVAL: 3000 // 3 segundos
 };
 
 // Estado global da aplicação

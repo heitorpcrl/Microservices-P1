@@ -7,8 +7,6 @@ from pathlib import Path
 
 
 def build_command(module: str, args: list[str]) -> list[str]:
-    """Return a command that runs a module (prefers `uvicorn` if on PATH)."""
-    # Prefer `python -m <module>` to avoid PATH issues on Windows
     return [sys.executable, "-m", module, *args]
 
 

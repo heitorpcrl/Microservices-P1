@@ -22,21 +22,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Configuração do banco de dados PostgreSQL (segura para senhas com caracteres especiais)
-pg_user = os.getenv("PG_USER", "postgres")
-pg_password = os.getenv("PG_PASSWORD", "3741")
-pg_host = os.getenv("PG_HOST", "localhost")
-pg_port = int(os.getenv("PG_PORT", "5432"))
-pg_db = os.getenv("PG_DB", "satellite_status")
-
-DATABASE_URL = URL.create(
-    drivername="postgresql+psycopg2",
-    username=pg_user,
-    password=pg_password,
-    host=pg_host,
-    port=pg_port,
-    database=pg_db,
-)
+# Configuração do banco de dados SQLite (para teste)
+DATABASE_URL = "sqlite:///./satellite_status.db"
 engine = create_engine(DATABASE_URL, pool_pre_ping=True)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
